@@ -4,8 +4,15 @@ const postSchema = mongoose.Schema({
     title: String,
     messageDescription: String,
     creator: String,
-    tags:[String],
-    selectedUrl: String,
+    tags: String,
+     selectedUrl: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
+  
+
     likeCount: {
         type: Number,
         default: 0

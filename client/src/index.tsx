@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+
 //server side helpers
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';

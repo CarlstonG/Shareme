@@ -36,13 +36,13 @@ export default function Navbar() {
                             <ul className={click ? 'nav-menu activ' : 'nav-menu'}> 
                            
                                 <li className="nav-item">
-                                    <Link to="/VideoForm" className="nav-links" onClick={closeMobileMenu}>
+                                    <Link to="/PostVideo" className="nav-links" onClick={closeMobileMenu}>
                                         Memories
                                     </Link>
                             
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/PostVideo" className="nav-links" onClick={closeMobileMenu}>
+                                    <Link to="/VideoForm" className="nav-links" onClick={closeMobileMenu}>
                                         Store Memories
                                     </Link>
 

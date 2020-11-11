@@ -1,13 +1,14 @@
 import express from 'express';
 
+import { getPosts, getPost, createPost, updatePost, likePost, deletePost } from '../controllers/posts.js';
 
-import {getPosts, createPost} from '../controllers/posts.js'
-
-//did not put any logic here to make this program more scalable. Separated a post.js on controller to put logic.
 const router = express.Router();
 
-router.get('/', getPosts);  //trigger get action //getting postmessage schema
-router.post('/', createPost); // trigger post action
-
+router.get('/', getPosts);
+router.post('/', createPost);
+router.get('/:id', getPost);
+router.patch('/:id', updatePost);
+router.delete('/:id', deletePost);
+router.patch('/:id/likePost', likePost);
 
 export default router;
