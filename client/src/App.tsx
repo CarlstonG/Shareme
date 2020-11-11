@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbars/Navbar'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -16,7 +16,7 @@ import './App.css'
 
 const App = ()  => {
     const dispatch = useDispatch();
-
+    const [currentId, setCurrentId] = useState(null);
 
     useEffect(() => {
       dispatch(getPosts());
@@ -31,8 +31,9 @@ const App = ()  => {
                     <Switch>
                          <Route exact path="/" component={Home}/>
                          <div className="container p-4">
-                          <Route exact path="/VideoForm" component={VideoForm}/>
-                          <Route exact path="/PostVideo" component={PostVideo}/>
+                          <Route exact path="/VideoForm" component={VideoForm} />
+                          <Route exact path="/PostVideo" component={PostVideo} setCurrentId={setCurrentId}/>
+                          <Route path="/update/:id" component={VideoForm} currentId={currentId} setcurrentId={setCurrentId}/>
                         </div>
                     </Switch>
                 <ToastContainer/>

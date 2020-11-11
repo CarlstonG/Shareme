@@ -17,5 +17,5 @@ export interface postData {
     createdAt?:{
         type: String | Date;
     },
-    updatedAt:{ type: String | Date; } | null
+    updatedAt?:{ type: String | Date; } | null
 }

@@ -1,32 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {toast} from 'react-toastify'
-import {useDispatch} from 'react-redux'
-import {useHistory, useParams} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
-import {createPost} from '../../actions/posts'
+import {createPost, updatePost} from '../../actions/posts'
 
 
-const VideoForm = () => {
+const VideoForm = ({currendId, setCurrentId}) => {
 
     const history = useHistory()
-
     const [postData, setPostData] = useState({
         title: '', 
         creator: '',
         messageDescription: '', 
         selectedUrl: ''});
-        const dispatch = useDispatch();
+        const dispatch = useDispatch(); 
+        const post = useSelector((state) => currendId ?  state.posts.find((p) => p._id === currendId): null);
+
+      useEffect(() => {
+        if(post) setPostData(post);
+      }, [post])
 
 
-        const handleSubmit =   async  (e: { preventDefault: () => void; }) => {
+        const handleSubmit =   async  (e) => {
                 e.preventDefault();
                 dispatch(createPost(postData))
                 toast.success('Thank you for Sharing!!!!')
                 history.push('/PostVideo')
-                console.log(postData)
+            
 
         }
 
+        if(currendId) {
+            dispatch(updatePost(currendId, postData));
+
+        }
+        else 
+        {
+            dispatch(createPost(postData));
+        }
         const clear = () => {
 
         }

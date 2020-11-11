@@ -8,6 +8,8 @@ import * as Server from '../../server/index'
 import {postData} from './Post/postData'
 
 
+
+
 const Posts = () => {
   const [posts, setVideos] = useState<postData[]>([])
 
@@ -21,7 +23,8 @@ const Posts = () => {
           updatedAt: posts.updatedAt ? new Date(posts.updatedAt): new Date()
       }
     })
-    .sort((a: { updatedAt: { getTime: number; }; }, b: { createdAt: { getTime: () => number; }; }) => b.createdAt.getTime() - a.updatedAt.getTime)
+    
+    .sort((a: { createdAt: { getTime: number; }; }, b: { createdAt: { getTime: () => number; }; }) => b.createdAt.getTime() - a.createdAt.getTime)
     setVideos(formatedVideos);
     
   }
@@ -37,13 +40,17 @@ useEffect(() => {
         
         {posts.map((post) => (
           
-            <Post post={post} key={post._id} />
+            <Post post={post} key={post._id} setCurrentId/>
           
         ))}
       </div>
 
     )
-  );
+  
+  )
+
+   
+  
 };
 
 export default Posts;
